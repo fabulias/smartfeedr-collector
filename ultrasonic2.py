@@ -42,7 +42,13 @@ def ReadDistance(pin):
 
 
 while True:
-   distance = [ReadDistance(11), ReadDistance(11), ReadDistance(11), ReadDistance(11), ReadDistance(11)]
+   distance = [ReadDistance(11)]
+   time.sleep(0.1)
+   distance.append(ReadDistance(11))
+   time.sleep(0.1)
+   distance.append(ReadDistance(11))
+   time.sleep(0.1)
+   distance.append(ReadDistance(11))
    dist_avg = sum(distance)/float(len(distance))
    print "========================================================="
    print "Time => ", datetime.now().strftime('%Y-%m-%d %H:%M:%S')
@@ -50,7 +56,13 @@ while True:
    print "Distance to object => ",dist_avg," cm"
    time.sleep(1)
    print "Second read"
-   distance2 = [ReadDistance(11),ReadDistance(11), ReadDistance(11), ReadDistance(11), ReadDistance(11)]
+   distance2 = [ReadDistance(11)]
+   time.sleep(0.1)
+   distance2.append(ReadDistance(11))
+   time.sleep(0.1)
+   distance2.append(ReadDistance(11))
+   time.sleep(0.1)
+   distance2.append(ReadDistance(11))
    dist2_avg = sum(distance2)/float(len(distance2))
    dist_real = fabs(dist2_avg - dist_avg)
    print "2 Distance to object => ", dist2_avg, " cm"
