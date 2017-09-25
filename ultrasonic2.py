@@ -53,7 +53,7 @@ while True:
    dist_real = fabs(distance2 - distance)
    print "2 Distance to object => ", distance2, " cm"
    time.sleep(0.1)
-   if (dist_real >= 4.0):
+   if (dist_real >= 3.0):
        print "Object detected"
        print "Descend time => ", datetime.now().strftime('%Y-%m-%d %H:%M:%S')
        time.sleep(20)
