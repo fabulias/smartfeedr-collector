@@ -3,6 +3,7 @@ import time
 import RPi.GPIO as GPIO
 from datetime import datetime
 from math import fabs
+import os
 
 # Use board based pin numbering
 GPIO.setmode(GPIO.BOARD)
@@ -42,7 +43,10 @@ def ReadDistance(pin):
 
 
 while True:
-   distance = ReadDistance(11)
+   if os.environ['STATE'] == "OFF":
+   	continue
+
+   distance = 15
    print "========================================================="
    print "Time => ", datetime.now().strftime('%Y-%m-%d %H:%M:%S')
    print "First read"
@@ -50,6 +54,8 @@ while True:
    time.sleep(1)
    print "Second read"
    distance2 = ReadDistance(11)
+   if distance2 > 15:
+       continue
    dist_real = fabs(distance2 - distance)
    print "2 Distance to object => ", distance2, " cm"
    time.sleep(0.1)
