@@ -41,11 +41,8 @@ def ReadDistance(pin):
    distance=duration*34000/2
    return distance
 
-
+print ("ultrasonic code is running...")
 while True:
-   if os.environ['STATE'] == "OFF":
-   	continue
-
    distance = 15
    print ("=========================================================")
    print ("Time => ", datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
