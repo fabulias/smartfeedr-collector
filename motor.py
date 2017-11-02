@@ -1,6 +1,11 @@
 import RPi.GPIO as GPIO    #Importamos la libreria RPi.GPIO
 import time                #Importamos time para poder usar time.sleep
-import sys 
+import sys
+import os
+
+if os.environ['STATE'] == "OFF":
+	GPIO.cleanup()                #Limpiamos los pines GPIO de la Raspberry y cerramos el script
+	return
 
 portion = int(sys.argv[1]) #Asignamos las porciones ingresadas por parametro
 if portion == 0:
