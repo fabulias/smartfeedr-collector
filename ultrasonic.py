@@ -44,17 +44,11 @@ def ReadDistance(pin):
 print ("ultrasonic code is running...")
 while True:
    distance = 15
-   print ("=========================================================")
-   print ("Time => ", datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
-   print ("First read")
-   print ("Distance to object => ",distance," cm")
    time.sleep(1)
-   print ("Second read")
    distance2 = ReadDistance(11)
    if distance2 > 15:
        continue
    dist_real = fabs(distance2 - distance)
-   print ("2 Distance to object => ", distance2, " cm")
    time.sleep(0.1)
    if (dist_real >= 3.0):
        print ("Object detected")

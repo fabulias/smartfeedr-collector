@@ -3,14 +3,11 @@ import time                #Importamos time para poder usar time.sleep
 import sys
 import os
 
-if os.environ['STATE'] == "OFF":
-	GPIO.cleanup()                #Limpiamos los pines GPIO de la Raspberry y cerramos el script
-	return
-
-portion = int(sys.argv[1]) #Asignamos las porciones ingresadas por parametro
+portion = float(sys.argv[1]) #Asignamos las porciones ingresadas por parametro
 if portion == 0:
     print("ERROR: PORTION INVALID")
     sys.exit()
+portion=int(portion*2)
 GPIO.setmode(GPIO.BOARD)   #Ponemos la Raspberry en modo BOARD
 GPIO.setup(12,GPIO.OUT)    #Ponemos el pin 12 como salida
 p = GPIO.PWM(12,50)        #Ponemos el pin 12 en modo PWM y enviamos 50 pulsos por segundo
