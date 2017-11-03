@@ -2,10 +2,21 @@ import RPi.GPIO as GPIO    #Importamos la libreria RPi.GPIO
 import time                #Importamos time para poder usar time.sleep
 import sys
 import os
+import subprocess
+
+flag = False
+p = subprocess.Popen(['ps', '-aux'], stdout=subprocess.PIPE)
+out, err = p.communicate()
+for line in out.splitlines():
+    file_=b'ultrasonic.py'
+    if file_ in line:
+        flag = True
+
+if not flag:
+    sys.exit()
 
 portion = float(sys.argv[1]) #Asignamos las porciones ingresadas por parametro
 if portion == 0:
-    print("ERROR: PORTION INVALID")
     sys.exit()
 portion=int(portion*2)
 GPIO.setmode(GPIO.BOARD)   #Ponemos la Raspberry en modo BOARD
