@@ -4,6 +4,7 @@ import RPi.GPIO as GPIO
 from datetime import datetime
 from math import fabs
 import os
+import requests
 
 # Use board based pin numbering
 GPIO.setmode(GPIO.BOARD)
@@ -53,4 +54,13 @@ while True:
    if (dist_real >= 3.0):
        print ("Object detected")
        print ("Descend time => ", datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
+       url = 'https://gcm-http.googleapis.com/gcm/send'
+       data = '''{
+         "to": "/topics/all",
+         "notification":{ "title":"Buenas noticias!", "body":"Tu mascota esta comiendo", "sound":"activated", "click_action":"FCM_PLUGIN_ACTIVITY", "icon":"fcm_push_icon" }
+       }'''
+       headers = {'Authorization': 'key=AAAAnZ2L5J4:APA91bGqkVDv_NBV3sd6FvhUBXVliHb0x67spkqa1exKKsBBhp2dGmd8kHUfT_wg0xTRrtVm0ju65yiRuRznDfKHWNijM9Y4hwMw38SwQqPGIua5iiCQIGRDkTLwa01IO2ZIvPRBThQQ',
+                   'Content-Type':'application/json'}
+       response = requests.post(url, data=data, headers=headers)
+       print response
        time.sleep(20)
